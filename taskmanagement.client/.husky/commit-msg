@@ -1,1 +1,2 @@
+cd taskmanagement.client
 pnpm commitlint ${1}
