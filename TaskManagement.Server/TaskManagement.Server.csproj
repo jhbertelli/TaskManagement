@@ -1,6 +1,4 @@
-<Project>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk.Web" />
-	
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -8,7 +6,7 @@
     <UserSecretsId>e299501d-b679-43be-b21c-57ecf81a5ab1</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <SpaRoot>..\taskmanagement.client</SpaRoot>
-    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+    <SpaProxyLaunchCommand>pnpm dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:58386</SpaProxyServerUrl>
   </PropertyGroup>
 
@@ -20,15 +18,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\taskmanagement.client\taskmanagement.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>-->
-
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk.Web" />
-  <Target Name="NpmBuild" BeforeTargets="BeforeBuild">
-    <Exec WorkingDirectory="$(SpaRoot)" Command="pnpm install" />
-  </Target>
-	
+  </ItemGroup>	
 </Project>
