@@ -33,7 +33,7 @@ export const LoginPage = () => {
                     label="Senha"
                     placeholder="Insira a sua senha..."
                     type="password"
-                    {...register('password', { required: { value: true, message: 'This field is required' } })}
+                    {...register('password')}
                     error={errors.password}
                 />
             </div>

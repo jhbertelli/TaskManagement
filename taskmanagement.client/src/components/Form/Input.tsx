@@ -1,8 +1,8 @@
-import { ElementProps, InputBaseProps as MantineInputProps, PolymorphicComponentProps, TextInput } from '@mantine/core'
+import { ElementProps, InputBaseProps, PolymorphicComponentProps, TextInput } from '@mantine/core'
 import { FC } from 'react'
 import { FieldError } from 'react-hook-form'
 
-interface InputProps<C> extends Omit<PolymorphicComponentProps<'input', MantineInputProps>, 'error'> {
+interface InputProps<C> extends Omit<PolymorphicComponentProps<'input', InputBaseProps>, 'error'> {
     as?: C
     error?: FieldError
 }
