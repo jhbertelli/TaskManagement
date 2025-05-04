@@ -31,7 +31,7 @@ public class AuthController : ControllerBase
 
         var identityResult = await _userManager.CreateAsync(user, input.Password);
 
-        if (identityResult.Succeeded)
+        if (!identityResult.Succeeded)
         {
             return BadRequest("Something went wrong");
         }
