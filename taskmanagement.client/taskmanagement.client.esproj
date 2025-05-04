@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.1738743">
   <PropertyGroup>
     <StartupCommand>pnpm dev</StartupCommand>
-	<ShouldRunNpmInstall>false</ShouldRunNpmInstall>
+    <ShouldRunNpmInstall>false</ShouldRunNpmInstall>
     <JavaScriptTestRoot>src\</JavaScriptTestRoot>
     <JavaScriptTestFramework>Jest</JavaScriptTestFramework>
     <!-- Allows the build (or compile) script located on package.json to run on Build -->

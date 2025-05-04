@@ -1,0 +1,23 @@
+services:
+  taskmanagement.server:
+    image: ${DOCKER_REGISTRY-}taskmanagementserver
+    container_name: taskmanagement.api
+    build:
+      context: .
+      dockerfile: TaskManagement.Server/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+  taskmanagement.database:
+    image: postgres:latest
+    container_name: taskmanagement.postgres_db
+    environment:
+      - POSTGRES_DB=taskmanagement
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - taskmanagement_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  taskmanagement_db:
