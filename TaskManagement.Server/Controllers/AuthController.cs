@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagement.Domain;
 using TaskManagement.Server.Models.DTO;
 using TaskManagement.Server.Repositories;
 
@@ -10,10 +11,10 @@ namespace TaskManagement.Server.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<User> _userManager;
     private readonly ITokenRepository _tokenRepository;
 
-    public AuthController(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository)
+    public AuthController(UserManager<User> userManager, ITokenRepository tokenRepository)
     {
         _userManager = userManager;
         _tokenRepository = tokenRepository;
@@ -23,11 +24,7 @@ public class AuthController : ControllerBase
     [Route("Register")]
     public async Task<IActionResult> RegisterAsync(RegisterInput input)
     {
-        var user = new IdentityUser()
-        {
-            Email = input.Email,
-            UserName = input.UserName,
-        };
+        var user = new User(input.UserName, input.Email);
 
         var identityResult = await _userManager.CreateAsync(user, input.Password);
 

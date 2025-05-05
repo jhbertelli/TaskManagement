@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using TaskManagement.Server;
+using TaskManagement.Domain;
+using TaskManagement.Infrastructure;
 using TaskManagement.Server.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,8 +60,8 @@ static void ConfigureIdentity(IServiceCollection services, ConfigurationManager 
 {
     services.AddScoped<ITokenRepository, TokenRepository>();
 
-    services.AddIdentityCore<IdentityUser>()
-        .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("TaskManagement")
+    services.AddIdentityCore<User>()
+        .AddTokenProvider<DataProtectorTokenProvider<User>>("TaskManagement")
         .AddEntityFrameworkStores<TaskManagementDbContext>()
         .AddDefaultTokenProviders();
 

@@ -9,6 +9,10 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "taskmanagement.client", "ta
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{50AAD308-16E8-4730-9F99-692FC5CCD6AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain", "TaskManagement.Domain\TaskManagement.Domain.csproj", "{1E178CFE-CFD2-43CF-B58E-95CDF5EE0F91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infrastructure", "TaskManagement.Infrastructure\TaskManagement.Infrastructure.csproj", "{EC3CB47B-42E6-409C-909E-0596A442B53F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{50AAD308-16E8-4730-9F99-692FC5CCD6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50AAD308-16E8-4730-9F99-692FC5CCD6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50AAD308-16E8-4730-9F99-692FC5CCD6AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E178CFE-CFD2-43CF-B58E-95CDF5EE0F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E178CFE-CFD2-43CF-B58E-95CDF5EE0F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E178CFE-CFD2-43CF-B58E-95CDF5EE0F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E178CFE-CFD2-43CF-B58E-95CDF5EE0F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC3CB47B-42E6-409C-909E-0596A442B53F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3CB47B-42E6-409C-909E-0596A442B53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3CB47B-42E6-409C-909E-0596A442B53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3CB47B-42E6-409C-909E-0596A442B53F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
