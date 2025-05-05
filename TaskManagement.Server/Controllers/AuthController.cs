@@ -20,6 +20,7 @@ public class AuthController : ControllerBase
         _tokenRepository = tokenRepository;
     }
 
+    // TODO: implement exception handling middleware
     [HttpPost]
     [Route("Register")]
     public async Task<IActionResult> RegisterAsync(RegisterInput input)
@@ -34,5 +35,27 @@ public class AuthController : ControllerBase
         }
 
         return Ok();
+    }
+
+    [HttpPost]
+    [Route("Login")]
+    public async Task<IActionResult> LoginAsync(LoginInput input)
+    {
+        var user = await _userManager.FindByEmailAsync(input.Email);
+
+        if (user == null || !await _userManager.CheckPasswordAsync(user, input.Password))
+        {
+            return BadRequest("Username or password incorrect");
+        }
+
+        // create token
+        var token = _tokenRepository.CreateJWTToken(user);
+
+        var response = new LoginResponseOutput
+        {
+            JwtToken = token
+        };
+
+        return Ok(response);
     }
 }

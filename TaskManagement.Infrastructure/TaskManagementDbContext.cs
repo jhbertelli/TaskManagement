@@ -6,7 +6,7 @@ namespace TaskManagement.Infrastructure;
 
 public class TaskManagementDbContext : DbContext
 {
-    public TaskManagementDbContext(DbContextOptions<DbContext> options) : base(options)
+    public TaskManagementDbContext(DbContextOptions<TaskManagementDbContext> options) : base(options)
     {
     }
 

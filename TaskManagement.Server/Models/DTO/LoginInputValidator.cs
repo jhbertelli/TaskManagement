@@ -3,18 +3,14 @@ using TaskManagement.Domain;
 
 namespace TaskManagement.Server.Models.DTO
 {
-    public class RegisterInputValidator : AbstractValidator<RegisterInput>
+    public class LoginInputValidator : AbstractValidator<LoginInput>
     {
-        public RegisterInputValidator()
+        public LoginInputValidator()
         {
             RuleFor(i => i.Email)
                 .NotEmpty()
                 .EmailAddress()
                 .MaximumLength(UserConsts.EmailMaxLength);
-
-            RuleFor(i => i.UserName)
-                .NotEmpty()
-                .MaximumLength(UserConsts.UserNameMaxLength);
 
             RuleFor(i => i.Password)
                 .NotEmpty(); // todo: password rules
