@@ -1,4 +1,4 @@
-﻿namespace TaskManagement.Server.Models.DTO
+﻿namespace TaskManagement.Application.Contracts.Auth
 {
     public class LoginInput
     {

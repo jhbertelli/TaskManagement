@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagement.Application.Contracts.Auth;
 using TaskManagement.Domain;
 using TaskManagement.Domain.Repositories;
-using TaskManagement.Server.Models.DTO;
 
 namespace TaskManagement.Server.Controllers;
 

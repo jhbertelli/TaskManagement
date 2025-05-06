@@ -1,10 +1,10 @@
-using FluentValidation;
-using FluentValidation.AspNetCore;
+using TaskManagement.Application.Contracts;
 using TaskManagement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 // Add services to the container.
 builder.Services.AddInfrastuctureServices(builder.Configuration);
 
-ConfigureFluentValidation(builder.Services);
+builder.Services.AddFluentValidationService();
 
 var app = builder.Build();
 
@@ -37,10 +37,3 @@ app.MapControllers();
 app.MapFallbackToFile("/index.html");
 
 await app.RunAsync();
-
-static void ConfigureFluentValidation(IServiceCollection services)
-{
-    services.AddValidatorsFromAssemblyContaining<Program>();
-    services.AddFluentValidationAutoValidation();
-    services.AddFluentValidationClientsideAdapters();
-}

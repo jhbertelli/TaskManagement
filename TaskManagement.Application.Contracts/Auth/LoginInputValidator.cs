@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using TaskManagement.Domain;
 
-namespace TaskManagement.Server.Models.DTO
+namespace TaskManagement.Application.Contracts.Auth
 {
     public class LoginInputValidator : AbstractValidator<LoginInput>
     {
