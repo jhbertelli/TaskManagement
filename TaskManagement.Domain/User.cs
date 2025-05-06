@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Ardalis.GuardClauses;
+using Microsoft.AspNetCore.Identity;
 
 namespace TaskManagement.Domain;
 
@@ -6,8 +7,8 @@ public class User : IdentityUser
 {
     public User(string email, string name) : base(email)
     {
-        Email = email;
-        Name = name;
+        Email = Guard.Against.NullOrWhiteSpace(email);
+        Name = Guard.Against.NullOrWhiteSpace(name);
     }
 
     protected User()
