@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace TaskManagement.Server.Repositories
+namespace TaskManagement.Domain.Repositories
 {
     public interface ITokenRepository
     {

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Domain;
+using TaskManagement.Domain.Repositories;
 using TaskManagement.Server.Models.DTO;
-using TaskManagement.Server.Repositories;
 
 namespace TaskManagement.Server.Controllers;
 
@@ -28,7 +28,7 @@ public class AuthController : ControllerBase
         var user = new User(input.UserName, input.Email);
 
         var identityResult = await _userManager.CreateAsync(user, input.Password);
-
+        
         if (!identityResult.Succeeded)
         {
             return BadRequest("Something went wrong");
