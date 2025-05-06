@@ -10,7 +10,7 @@
         "preview": "vite preview",
         "test": "jest",
         "commitlint": "commitlint --edit",
-        "prepare": "cd .. && husky taskmanagement.client/.husky",
+        "prepare": "cd ../.. && husky src/taskmanagement.client/.husky",
         "commit": "cz"
     },
     "dependencies": {
