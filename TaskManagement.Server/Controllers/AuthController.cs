@@ -24,7 +24,7 @@ public class AuthController : ControllerBase
     [Route("Register")]
     public async Task<IActionResult> RegisterAsync(RegisterInput input)
     {
-        var user = new User(input.UserName, input.Email);
+        var user = new User(input.Email, input.Name);
 
         var identityResult = await _userManager.CreateAsync(user, input.Password);
         

@@ -7,11 +7,9 @@ namespace TaskManagement.Application.Contracts
     public static class DependecyInjection
     {
         public static void AddFluentValidationService(this IServiceCollection services)
-        {
-            services
-                .AddValidatorsFromAssemblyContaining(typeof(DependecyInjection))
-                .AddFluentValidationAutoValidation()
-                .AddFluentValidationClientsideAdapters();
-        }
+            => services
+            .AddValidatorsFromAssemblyContaining(typeof(DependecyInjection))
+            .AddFluentValidationAutoValidation()
+            .AddFluentValidationClientsideAdapters();
     }
 }

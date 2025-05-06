@@ -16,9 +16,10 @@ namespace TaskManagement.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    UserName = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
+                    Name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
+                    UserName = table.Column<string>(type: "character varying(320)", maxLength: 320, nullable: false),
                     NormalizedUserName = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "character varying(320)", maxLength: 320, nullable: false),
                     NormalizedEmail = table.Column<string>(type: "text", nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: true),

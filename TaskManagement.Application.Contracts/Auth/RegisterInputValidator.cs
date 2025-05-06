@@ -12,12 +12,13 @@ namespace TaskManagement.Application.Contracts.Auth
                 .EmailAddress()
                 .MaximumLength(UserConsts.EmailMaxLength);
 
-            RuleFor(i => i.UserName)
+            RuleFor(i => i.Name)
                 .NotEmpty()
-                .MaximumLength(UserConsts.UserNameMaxLength);
+                .MaximumLength(UserConsts.NameMaxLength);
 
             RuleFor(i => i.Password)
-                .NotEmpty(); // todo: password rules
+                .NotEmpty()
+                .MinimumLength(UserConsts.PasswordMinLength); // todo: password rules
         }
     }
 }

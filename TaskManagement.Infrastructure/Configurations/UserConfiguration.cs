@@ -16,7 +16,12 @@ namespace TaskManagement.Infrastructure.Configurations
             builder
                 .Property(x => x.UserName)
                 .IsRequired()
-                .HasMaxLength(UserConsts.UserNameMaxLength);
+                .HasMaxLength(UserConsts.EmailMaxLength);
+
+            builder
+                .Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(UserConsts.NameMaxLength);
         }
     }
 }

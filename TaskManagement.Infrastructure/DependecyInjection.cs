@@ -38,22 +38,21 @@ namespace TaskManagement.Infrastructure
 
         private static void ConfigureIdentity(this IServiceCollection services, ConfigurationManager appSettings)
         {
-            services.AddIdentityCore<User>()
+            services
+                .AddIdentityCore<User>(options =>
+                {
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequiredLength = UserConsts.PasswordMinLength;
+                })
                 .AddTokenProvider<DataProtectorTokenProvider<User>>("TaskManagement")
                 .AddEntityFrameworkStores<TaskManagementDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
-            });
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                     options.TokenValidationParameters = new TokenValidationParameters
                     {

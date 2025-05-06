@@ -35,8 +35,8 @@ namespace TaskManagement.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(320)
+                        .HasColumnType("character varying(320)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
@@ -46,6 +46,11 @@ namespace TaskManagement.Infrastructure.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("text");
@@ -70,8 +75,8 @@ namespace TaskManagement.Infrastructure.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasMaxLength(320)
+                        .HasColumnType("character varying(320)");
 
                     b.HasKey("Id");
 

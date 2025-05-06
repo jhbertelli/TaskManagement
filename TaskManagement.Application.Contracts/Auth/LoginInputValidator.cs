@@ -13,7 +13,7 @@ namespace TaskManagement.Application.Contracts.Auth
                 .MaximumLength(UserConsts.EmailMaxLength);
 
             RuleFor(i => i.Password)
-                .NotEmpty(); // todo: password rules
+                .NotEmpty();
         }
     }
 }
