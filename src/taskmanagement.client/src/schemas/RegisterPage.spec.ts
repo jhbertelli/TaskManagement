@@ -35,4 +35,6 @@ describe('registerPageSchema', () => {
 
         expect(result.success).toBe(true)
     })
+
+    test.todo('name and repeat password')
 })

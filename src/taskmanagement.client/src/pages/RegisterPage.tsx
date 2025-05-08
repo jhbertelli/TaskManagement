@@ -1,10 +1,10 @@
-import { PasswordInput, Title } from '@mantine/core'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { Form } from 'components/Form'
-import { registerPageSchema, RegisterPageSchema } from 'schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { PasswordInput, Title } from '@mantine/core'
 import { Button } from 'components/Button'
-import { paths } from 'constants/paths'
+import { Form } from 'components/Form'
+import { pathTo } from 'constants/paths'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { registerPageSchema, RegisterPageSchema } from 'schemas'
 
 export const RegisterPage = () => {
     const {
@@ -52,7 +52,7 @@ export const RegisterPage = () => {
             </div>
 
             <div className="flex flex-col gap-4">
-                <Button variant="default" path={paths.login} fullWidth>
+                <Button variant="default" path={pathTo.login} fullWidth>
                     Já possui uma conta?
                 </Button>
 

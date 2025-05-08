@@ -1,17 +1,8 @@
-import { paths } from 'constants/paths'
-import { LoginPage } from 'pages/LoginPage'
-import { RegisterPage } from 'pages/RegisterPage'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { routes } from 'constants/routes'
+import { RouterProvider } from 'react-router-dom'
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path={paths.register} Component={RegisterPage} />
-                <Route path={paths.login} Component={LoginPage} />
-            </Routes>
-        </BrowserRouter>
-    )
+    return <RouterProvider router={routes} />
 }
 
 export default App
