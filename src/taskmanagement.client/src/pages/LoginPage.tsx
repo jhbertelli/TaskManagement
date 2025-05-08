@@ -1,28 +1,26 @@
 import { PasswordInput, Title } from '@mantine/core'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Form } from 'components/Form'
-import { registerPageSchema, RegisterPageSchema } from 'schemas'
+import { loginPageSchema, LoginPageSchema } from 'schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from 'components/Button'
 import { paths } from 'constants/paths'
 
-export const RegisterPage = () => {
+export const LoginPage = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<RegisterPageSchema>({
-        resolver: zodResolver(registerPageSchema),
+    } = useForm<LoginPageSchema>({
+        resolver: zodResolver(loginPageSchema),
     })
 
-    const onSubmit: SubmitHandler<RegisterPageSchema> = (data) => console.log(data)
+    const onSubmit: SubmitHandler<LoginPageSchema> = (data) => console.log(data)
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between">
             <div className="flex flex-col gap-4">
-                <Title className="text-center">Cadastro</Title>
-
-                <Form.Input label="Nome" placeholder="Insira o seu nome..." {...register('name')} error={errors.name} />
+                <Title className="text-center">Login</Title>
 
                 <Form.Input
                     type="email"
@@ -40,24 +38,15 @@ export const RegisterPage = () => {
                     {...register('password')}
                     error={errors.password}
                 />
-
-                <Form.Input
-                    as={PasswordInput}
-                    label="Repita sua senha"
-                    placeholder="Insira novamente a sua senha..."
-                    type="password"
-                    {...register('repeatPassword')}
-                    error={errors.repeatPassword}
-                />
             </div>
 
             <div className="flex flex-col gap-4">
-                <Button variant="default" path={paths.login} fullWidth>
-                    Já possui uma conta?
+                <Button variant="default" path={paths.register} fullWidth>
+                    Não possui uma conta?
                 </Button>
 
                 <Button type="submit" color="dark">
-                    Cadastrar
+                    Login
                 </Button>
             </div>
         </Form>
