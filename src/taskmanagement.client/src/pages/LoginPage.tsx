@@ -28,15 +28,16 @@ export const LoginPage = () => {
                     placeholder="Insira o seu endereço de e-mail..."
                     {...register('email')}
                     error={errors.email}
+                    withAsterisk
                 />
 
                 <Form.Input
                     as={PasswordInput}
                     label="Senha"
                     placeholder="Insira a sua senha..."
-                    type="password"
                     {...register('password')}
                     error={errors.password}
+                    withAsterisk
                 />
             </div>
 

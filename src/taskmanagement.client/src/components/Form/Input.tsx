@@ -2,7 +2,7 @@ import { ElementProps, InputBaseProps, PolymorphicComponentProps, TextInput } fr
 import { FC } from 'react'
 import { FieldError } from 'react-hook-form'
 
-interface InputProps<C> extends Omit<PolymorphicComponentProps<'input', InputBaseProps>, 'error'> {
+export interface InputProps<C> extends Omit<PolymorphicComponentProps<'input', InputBaseProps>, 'error'> {
     as?: C
     error?: FieldError
 }

@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { PasswordInput, Title } from '@mantine/core'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form'
+import { PasswordStrengthInput } from 'components/PasswordStrengthInput'
 import { pathTo } from 'constants/paths'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { registerPageSchema, RegisterPageSchema } from 'schemas'
@@ -22,7 +23,13 @@ export const RegisterPage = () => {
             <div className="flex flex-col gap-4">
                 <Title className="text-center">Cadastro</Title>
 
-                <Form.Input label="Nome" placeholder="Insira o seu nome..." {...register('name')} error={errors.name} />
+                <Form.Input
+                    label="Nome"
+                    placeholder="Insira o seu nome..."
+                    {...register('name')}
+                    error={errors.name}
+                    withAsterisk
+                />
 
                 <Form.Input
                     type="email"
@@ -30,24 +37,25 @@ export const RegisterPage = () => {
                     placeholder="Insira o seu endereço de e-mail..."
                     {...register('email')}
                     error={errors.email}
+                    withAsterisk
                 />
 
-                <Form.Input
-                    as={PasswordInput}
+                <PasswordStrengthInput
                     label="Senha"
                     placeholder="Insira a sua senha..."
-                    type="password"
                     {...register('password')}
-                    error={errors.password}
+                    error={!!errors.password}
+                    showRequirements={!!errors.password}
+                    withAsterisk
                 />
 
                 <Form.Input
                     as={PasswordInput}
                     label="Repita sua senha"
                     placeholder="Insira novamente a sua senha..."
-                    type="password"
                     {...register('repeatPassword')}
                     error={errors.repeatPassword}
+                    withAsterisk
                 />
             </div>
 
