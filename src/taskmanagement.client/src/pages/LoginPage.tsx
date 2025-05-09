@@ -3,19 +3,22 @@ import { PasswordInput, Title } from '@mantine/core'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form'
 import { pathTo } from 'constants/paths'
+import { useLogin } from 'hooks/use-login'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { loginPageSchema, LoginPageSchema } from 'schemas'
+import { LoginSchema, loginSchema } from 'schemas'
 
 export const LoginPage = () => {
+    const login = useLogin()
+
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<LoginPageSchema>({
-        resolver: zodResolver(loginPageSchema),
+    } = useForm<LoginSchema>({
+        resolver: zodResolver(loginSchema),
     })
 
-    const onSubmit: SubmitHandler<LoginPageSchema> = (data) => console.log(data)
+    const onSubmit: SubmitHandler<LoginSchema> = async (data) => console.log(await login.mutateAsync(data))
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between">

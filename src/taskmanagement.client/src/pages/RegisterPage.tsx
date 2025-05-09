@@ -4,19 +4,22 @@ import { Button } from 'components/Button'
 import { Form } from 'components/Form'
 import { PasswordStrengthInput } from 'components/PasswordStrengthInput'
 import { pathTo } from 'constants/paths'
+import { useRegister } from 'hooks/use-register'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { registerPageSchema, RegisterPageSchema } from 'schemas'
+import { registerSchema, RegisterSchema } from 'schemas'
 
 export const RegisterPage = () => {
+    const registerUser = useRegister()
+
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<RegisterPageSchema>({
-        resolver: zodResolver(registerPageSchema),
+    } = useForm<RegisterSchema>({
+        resolver: zodResolver(registerSchema),
     })
 
-    const onSubmit: SubmitHandler<RegisterPageSchema> = (data) => console.log(data)
+    const onSubmit: SubmitHandler<RegisterSchema> = async (data) => console.log(await registerUser.mutateAsync(data))
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between">
