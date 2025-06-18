@@ -9,10 +9,10 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@\-#.$%^&*])[a-zA-Z0-9!@\-
 
 export const registerSchema = z
     .object({
-        email: z.string().email(),
-        name: z.string().nonempty(),
+        email: z.string().email('Insira um e-mail válido'),
+        name: z.string().nonempty('Insira um nome'),
         password: z.string().nonempty().regex(PASSWORD_REGEX),
-        repeatPassword: z.string().nonempty(),
+        repeatPassword: z.string().nonempty('Insira uma senha'),
     })
     .refine((schema) => schema.password === schema.repeatPassword, {
         message: 'As senhas devem ser iguais',

@@ -1,14 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { PasswordInput, Title } from '@mantine/core'
+import { Title } from '@mantine/core'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form'
 import { pathTo } from 'constants/paths'
 import { useLogin } from 'hooks/use-login'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useTitle } from 'react-use'
 import { LoginSchema, loginSchema } from 'schemas'
 
 export const LoginPage = () => {
     const login = useLogin()
+
+    useTitle('Login')
 
     const {
         register,
@@ -34,8 +37,7 @@ export const LoginPage = () => {
                     withAsterisk
                 />
 
-                <Form.Input
-                    as={PasswordInput}
+                <Form.Input.Password
                     label="Senha"
                     placeholder="Insira a sua senha..."
                     {...register('password')}

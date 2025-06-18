@@ -1,15 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { PasswordInput, Title } from '@mantine/core'
+import { Title } from '@mantine/core'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form'
 import { PasswordStrengthInput } from 'components/PasswordStrengthInput'
 import { pathTo } from 'constants/paths'
 import { useRegister } from 'hooks/use-register'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useTitle } from 'react-use'
 import { registerSchema, RegisterSchema } from 'schemas'
 
 export const RegisterPage = () => {
     const registerUser = useRegister()
+
+    useTitle('Cadastro')
 
     const {
         register,
@@ -47,13 +50,11 @@ export const RegisterPage = () => {
                     label="Senha"
                     placeholder="Insira a sua senha..."
                     {...register('password')}
-                    error={!!errors.password}
                     showRequirements={!!errors.password}
                     withAsterisk
                 />
 
-                <Form.Input
-                    as={PasswordInput}
+                <Form.Input.Password
                     label="Repita sua senha"
                     placeholder="Insira novamente a sua senha..."
                     {...register('repeatPassword')}
