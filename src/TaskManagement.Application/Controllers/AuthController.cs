@@ -4,7 +4,7 @@ using TaskManagement.Application.Contracts.Auth;
 using TaskManagement.Domain;
 using TaskManagement.Domain.Repositories;
 
-namespace TaskManagement.Server.Controllers;
+namespace TaskManagement.Application.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

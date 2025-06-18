@@ -4,7 +4,7 @@ services:
     container_name: taskmanagement.api
     build:
       context: .
-      dockerfile: src/TaskManagement.Server/Dockerfile
+      dockerfile: src/TaskManagement.Application/Dockerfile
     ports:
       - "8080:8080"
       - "8081:8081"

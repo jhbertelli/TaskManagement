@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infrastructure", "src\TaskManagement.Infrastructure\TaskManagement.Infrastructure.csproj", "{FBEAEEF4-4AB7-4F7E-B1C5-E2C5CE1F1AA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Server", "src\TaskManagement.Server\TaskManagement.Server.csproj", "{8CBDD0C3-E6FE-41D3-887B-4FA6AE358D73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application", "src\TaskManagement.Application\TaskManagement.Application.csproj", "{8CBDD0C3-E6FE-41D3-887B-4FA6AE358D73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
