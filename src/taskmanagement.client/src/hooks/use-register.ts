@@ -1,10 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import { RegisterSchema } from 'schemas'
+import { AuthService } from 'services/auth-service'
 
 export const useRegister = () =>
     useMutation({
-        mutationFn: async (props: RegisterSchema) => {
-            console.log(props)
-            return { result: 'mock' }
-        },
+        mutationFn: AuthService.register,
+        onSuccess: () => console.log('todo: redirect to home'),
     })

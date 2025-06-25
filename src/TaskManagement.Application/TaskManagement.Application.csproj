@@ -7,7 +7,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <SpaRoot>..\taskmanagement.client</SpaRoot>
     <SpaProxyLaunchCommand>pnpm dev</SpaProxyLaunchCommand>
-    <SpaProxyServerUrl>https://localhost:58386</SpaProxyServerUrl>
+    <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 

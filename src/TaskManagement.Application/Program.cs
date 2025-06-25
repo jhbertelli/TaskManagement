@@ -15,6 +15,17 @@ builder.Services.AddInfrastuctureServices(builder.Configuration);
 
 builder.Services.AddFluentValidationService();
 
+const string corsAllowOriginsString = "_corsAllowOrigins";
+
+builder.Services.AddCors(options =>
+    options.AddPolicy(corsAllowOriginsString,
+        policy => policy
+            .WithOrigins(builder.Configuration["ClientUrl"]!)
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    )
+);
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -29,13 +40,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ExceptionHandlerMiddleware>();
-
 app.UseHttpsRedirection();
+
+app.UseCors(corsAllowOriginsString);
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.MapFallbackToFile("/index.html");
 
