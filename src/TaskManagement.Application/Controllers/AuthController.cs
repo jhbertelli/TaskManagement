@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Application.Contracts.Auth;
 using TaskManagement.Domain;
+using TaskManagement.Domain.Exceptions.Auth;
 using TaskManagement.Domain.Repositories;
 
 namespace TaskManagement.Application.Controllers;
@@ -19,10 +20,9 @@ public class AuthController : ControllerBase
         _tokenRepository = tokenRepository;
     }
 
-    // TODO: implement exception handling middleware
     [HttpPost]
     [Route("Register")]
-    public async Task<IActionResult> RegisterAsync(RegisterInput input)
+    public async Task RegisterAsync(RegisterInput input)
     {
         var user = new User(input.Email, input.Name);
 
@@ -30,24 +30,28 @@ public class AuthController : ControllerBase
         
         if (!identityResult.Succeeded)
         {
-            return BadRequest("Something went wrong");
+            throw new IdentityRegisterErrorException(
+                string.Join(
+                    "",
+                    identityResult
+                    .Errors
+                    .Select(error => error.Description + Environment.NewLine)
+                )
+            );
         }
-
-        return Ok();
     }
 
     [HttpPost]
     [Route("Login")]
-    public async Task<IActionResult> LoginAsync(LoginInput input)
+    public async Task<LoginResponseOutput> LoginAsync(LoginInput input)
     {
         var user = await _userManager.FindByEmailAsync(input.Email);
 
         if (user == null || !await _userManager.CheckPasswordAsync(user, input.Password))
         {
-            return BadRequest("Username or password incorrect");
+            throw new InvalidLoginException();
         }
 
-        // create token
         var token = _tokenRepository.CreateJWTToken(user);
 
         var response = new LoginResponseOutput
@@ -55,6 +59,6 @@ public class AuthController : ControllerBase
             JwtToken = token
         };
 
-        return Ok(response);
+        return response;
     }
 }
