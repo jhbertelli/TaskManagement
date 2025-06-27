@@ -1,29 +1,63 @@
-﻿namespace TaskManagement.Domain.Assignments
+﻿using Ardalis.GuardClauses;
+
+namespace TaskManagement.Domain.Assignments;
+
+public class Assignment
 {
-    public class Assignment
+    public Assignment(
+        Guid assignedUserId,
+        DateTime deadline,
+        string name,
+        AssignmentPriority priority,
+        AssignmentSection section,
+        AssignmentAlertType? alertType = null,
+        string? description = null
+    )
     {
-        public string Name { get; set; } = string.Empty;
+        AssignedUserId = Guard.Against.Default(assignedUserId);
 
-        public User? AssignedUser { get; set; }
+        Deadline = Guard.Against.Default(deadline);
 
-        public Guid AssignedUserId { get; set; }
+        Name = Guard.Against.LengthOutOfRange(
+            Guard.Against.NullOrEmpty(name),
+            AssignmentConsts.NameMinLength,
+            AssignmentConsts.NameMaxLength
+        );
 
-        public DateTime Deadline { get; set; }
+        Priority = Guard.Against.EnumOutOfRange(priority);
+        Section = Guard.Against.EnumOutOfRange(section);
 
-        public AssignmentPriority Priority { get; set; }
-
-        public string Description { get; set; } = string.Empty;
-
-        public AssignmentSection Section { get; set; }
-
-        public AssignmentAlertType? AlertType { get; set; }
-
-        public AssignmentStatus Status { get; set; }
-
-        public DateTime? ConclusionDate { get; set; }
-
-        public string? ConclusionNote { get; set; }
-
-        public string? CancellationReason { get; set; }
+        AlertType = alertType == null
+            ? null
+            : Guard.Against.EnumOutOfRange((AssignmentAlertType)alertType);
+        Description = string.IsNullOrEmpty(description)
+            ? null
+            : Guard.Against.StringTooLong(description, AssignmentConsts.DescriptionMaxLength);
     }
+
+    public AssignmentAlertType? AlertType { get; set; }
+
+    public User? AssignedUser { get; set; }
+
+    public Guid AssignedUserId { get; set; }
+
+    public string? CancellationReason { get; set; }
+
+    public DateTime? ConclusionDate { get; set; }
+
+    public string? ConclusionNote { get; set; }
+
+    public DateTime Deadline { get; set; }
+
+    public string? Description { get; set; }
+
+    public Guid Id { get; set; }
+
+    public string Name { get; set; }
+
+    public AssignmentPriority Priority { get; set; }
+
+    public AssignmentSection Section { get; set; }
+
+    public AssignmentStatus Status { get; set; }
 }

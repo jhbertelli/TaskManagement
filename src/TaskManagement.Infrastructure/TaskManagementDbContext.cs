@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskManagement.Domain;
+using TaskManagement.Domain.Assignments;
 using TaskManagement.Infrastructure.Configurations;
+using TaskManagement.Infrastructure.Configurations.Assignments;
 
 namespace TaskManagement.Infrastructure;
 
@@ -16,6 +18,8 @@ public class TaskManagementDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
 
+    public DbSet<Assignment> Assignments { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql(@"Host=taskmanagement.database;Port=5432;Username=postgres;Password=1234;Database=taskmanagement");
 
@@ -24,5 +28,6 @@ public class TaskManagementDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         new UserConfiguration().Configure(modelBuilder.Entity<User>());
+        new AssignmentConfiguration().Configure(modelBuilder.Entity<Assignment>());
     }
 }

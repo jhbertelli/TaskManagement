@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskManagement.Application.Contracts.Auth;
 using TaskManagement.Domain.Assignments;
 
 namespace TaskManagement.Application.Controllers.Assignments;
@@ -8,6 +7,14 @@ namespace TaskManagement.Application.Controllers.Assignments;
 [ApiController]
 public class GetAssignmentController : ControllerBase
 {
+    private readonly Assignment _fakeAssignment = new(
+        Guid.NewGuid(),
+        DateTime.UtcNow,
+        "My fake assignment",
+        AssignmentPriority.Medium,
+        AssignmentSection.Leisure
+    );
+
     public GetAssignmentController()
     {
     }
@@ -18,7 +25,7 @@ public class GetAssignmentController : ControllerBase
     {
         var assignments = new List<Assignment>()
         {
-            new()
+            _fakeAssignment
         };
 
         return await Task.FromResult(assignments);
@@ -26,8 +33,8 @@ public class GetAssignmentController : ControllerBase
 
     [HttpGet]
     [Route("Get")]
-    public async Task<Assignment> GetAsync(LoginInput input)
+    public async Task<Assignment> GetAsync()
     {
-        return await Task.FromResult(new Assignment());
+        return await Task.FromResult(_fakeAssignment);
     }
 }
