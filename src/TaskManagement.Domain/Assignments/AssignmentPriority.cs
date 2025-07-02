@@ -2,7 +2,7 @@
 
 public enum AssignmentPriority
 {
-    High,
+    Low,
     Medium,
-    Low
+    High
 }
