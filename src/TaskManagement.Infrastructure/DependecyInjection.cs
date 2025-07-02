@@ -71,6 +71,7 @@ namespace TaskManagement.Infrastructure
         private static void ConfigureRepositories(this IServiceCollection services)
         {
             services.AddScoped<ITokenRepository, TokenRepository>();
+            services.AddScoped<IAssignmentRepository, AssignmentRepository>();
         }
     }
 }

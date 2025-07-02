@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Application.Contracts.Assignments;
 using TaskManagement.Domain.Assignments;
+using TaskManagement.Domain.Repositories;
 
 namespace TaskManagement.Application.Controllers.Assignments;
 
@@ -16,8 +17,11 @@ public class AssignmentsController : ControllerBase
         AssignmentSection.Leisure
     );
 
-    public AssignmentsController()
+    private readonly IAssignmentRepository _assignmentRepository;
+
+    public AssignmentsController(IAssignmentRepository assignmentRepository)
     {
+        _assignmentRepository = assignmentRepository;
     }
 
     [HttpGet]
@@ -56,5 +60,23 @@ public class AssignmentsController : ControllerBase
     public async Task<Assignment> GetAsync(Guid id)
     {
         return await Task.FromResult(_fakeAssignment);
+    }
+
+    [HttpPost]
+    public async Task CreateAsync(CreateAssignmentInput input)
+    {
+        var assignment = new Assignment(
+            input.AssignedUserId,
+            input.Deadline,
+            input.Name,
+            input.Priority,
+            input.Section,
+            input.AlertType,
+            input.Description
+        );
+
+        await _assignmentRepository.CreateAsync(assignment);
+
+        await _assignmentRepository.SaveChangesAsync();
     }
 }
