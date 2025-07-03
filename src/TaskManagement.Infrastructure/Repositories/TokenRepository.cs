@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TaskManagement.Domain;
 using TaskManagement.Domain.Repositories;
 
 namespace TaskManagement.Infrastructure.Repositories
@@ -17,7 +17,7 @@ namespace TaskManagement.Infrastructure.Repositories
             _configuration = configuration;
         }
 
-        public string CreateJWTToken(IdentityUser user)
+        public string CreateJWTToken(User user)
         {
             var claims = new List<Claim>()
             {

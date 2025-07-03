@@ -12,6 +12,11 @@ namespace TaskManagement.Infrastructure.Configurations.Assignments
                 .HasKey(x => x.Id);
 
             builder
+                .HasOne(x => x.AssignedUser)
+                .WithMany()
+                .HasForeignKey(x => x.AssignedUserId);
+
+            builder
                 .Property(x => x.Name)
                 .IsRequired()
                 .HasMaxLength(AssignmentConsts.NameMaxLength);

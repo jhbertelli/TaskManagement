@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace TaskManagement.Domain;
 
-public class User : IdentityUser
+public class User : IdentityUser<Guid>
 {
     public User(string email, string name) : base(email)
     {
