@@ -7,7 +7,7 @@ import { pathTo } from 'constants/paths'
 import { useRegister } from 'hooks/use-register'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTitle } from 'react-use'
-import { registerSchema, RegisterSchema } from 'schemas'
+import { registerSchema, RegisterSchema } from 'schemas/auth'
 
 export const RegisterPage = () => {
     const registerUser = useRegister()

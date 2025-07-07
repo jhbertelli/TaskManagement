@@ -6,7 +6,7 @@ import { pathTo } from 'constants/paths'
 import { useLogin } from 'hooks/use-login'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTitle } from 'react-use'
-import { LoginSchema, loginSchema } from 'schemas'
+import { LoginSchema, loginSchema } from 'schemas/auth'
 
 export const LoginPage = () => {
     const login = useLogin()
