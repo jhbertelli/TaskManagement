@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Title } from '@mantine/core'
+import { Checkbox, Textarea, Title } from '@mantine/core'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -7,6 +7,9 @@ import { useTitle } from 'react-use'
 import { DatePickerInput } from '@mantine/dates'
 import { CreateAssignmentSchema, createAssignmentSchema } from 'schemas/assignments/create-assignment'
 import { Calendar } from 'react-feather'
+import { AssignmentPrioritySelect } from 'components/AssignmentPrioritySelect'
+import { AssignmentSectionSelect } from 'components/AssignmentSectionSelect'
+import { AlertTypeSelect } from 'components/AlertTypeSelect'
 
 export const CreateAssignmentPage = () => {
     // const createAssignment = useCreateAssignment()
@@ -18,11 +21,15 @@ export const CreateAssignmentPage = () => {
         handleSubmit,
         formState: { errors },
         setValue,
+        watch,
     } = useForm<CreateAssignmentSchema>({
         resolver: zodResolver(createAssignmentSchema),
     })
 
     const onSubmit: SubmitHandler<CreateAssignmentSchema> = async (data) => console.log(data)
+
+    const isImportant = watch('section') === 'Important'
+    const receiveAlert = watch('receiveAlert')
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between">
@@ -42,7 +49,7 @@ export const CreateAssignmentPage = () => {
                     label="Pessoa atribuída"
                     placeholder="Este campo será substituido por um componente mais adequado"
                     {...register('assignedUserId')}
-                    error={errors.name}
+                    error={errors.assignedUserId}
                     withAsterisk
                 />
 
@@ -51,11 +58,47 @@ export const CreateAssignmentPage = () => {
                     placeholder="Insira o prazo da tarefa..."
                     {...register('deadline')}
                     onChange={(value) => setValue('deadline', value?.toISOString() ?? '')}
-                    error={errors.name?.message}
+                    error={errors.deadline?.message}
                     withAsterisk
                     rightSection={<Calendar />}
                     rightSectionPointerEvents="none"
                 />
+
+                <AssignmentPrioritySelect
+                    {...register('priority')}
+                    onChange={(value) => setValue('priority', value)}
+                    error={errors.priority?.message}
+                    withAsterisk
+                />
+
+                <Textarea
+                    resize="vertical"
+                    label="Descrição"
+                    placeholder="Insira a descrição da tarefa..."
+                    {...register('description')}
+                    error={errors.description?.message}
+                    withAsterisk
+                />
+
+                <AssignmentSectionSelect
+                    {...register('section')}
+                    onChange={(value) => setValue('section', value)}
+                    error={errors.section?.message}
+                    withAsterisk
+                />
+
+                {isImportant && (
+                    <Checkbox {...register('receiveAlert')} error={errors.section?.message} label="Alertar" />
+                )}
+
+                {receiveAlert && (
+                    <AlertTypeSelect
+                        {...register('alertType')}
+                        onChange={(value) => setValue('alertType', value)}
+                        error={errors.alertType?.message}
+                        withAsterisk
+                    />
+                )}
             </div>
 
             <Button type="submit" color="dark">

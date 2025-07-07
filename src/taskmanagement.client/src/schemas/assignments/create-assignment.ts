@@ -7,6 +7,7 @@ export const createAssignmentSchema = z.object({
     priority: z.enum(['Low', 'Medium', 'High']),
     section: z.enum(['Domestic', 'Work', 'Leisure', 'Important']),
     alertType: z.enum(['SMS', 'Email']).optional(),
+    receiveAlert: z.boolean().optional(),
     description: z.string().optional(),
 })
 
