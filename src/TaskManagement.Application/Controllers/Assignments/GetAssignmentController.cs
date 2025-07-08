@@ -7,7 +7,7 @@ namespace TaskManagement.Application.Controllers.Assignments;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AssignmentsController : ControllerBase
+public class GetAssignmentController : ControllerBase
 {
     private readonly Assignment _fakeAssignment = new(
         Guid.NewGuid(),
@@ -19,12 +19,13 @@ public class AssignmentsController : ControllerBase
 
     private readonly IAssignmentRepository _assignmentRepository;
 
-    public AssignmentsController(IAssignmentRepository assignmentRepository)
+    public GetAssignmentController(IAssignmentRepository assignmentRepository)
     {
         _assignmentRepository = assignmentRepository;
     }
 
     [HttpGet]
+    [Route("GetAll")]
     public async Task<GetAllAssignmentsOutput> GetAllAsync()
     {
         var assignments = new GetAllAssignmentsOutput()
@@ -60,23 +61,5 @@ public class AssignmentsController : ControllerBase
     public async Task<Assignment> GetAsync(Guid id)
     {
         return await Task.FromResult(_fakeAssignment);
-    }
-
-    [HttpPost]
-    public async Task CreateAsync(CreateAssignmentInput input)
-    {
-        var assignment = new Assignment(
-            input.AssignedUserId,
-            input.Deadline,
-            input.Name,
-            input.Priority,
-            input.Section,
-            input.AlertType,
-            input.Description
-        );
-
-        await _assignmentRepository.CreateAsync(assignment);
-
-        await _assignmentRepository.SaveChangesAsync();
     }
 }

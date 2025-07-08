@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { GetAllAssignmentsOutput, GetAssignmentOutput } from './types'
 
-const servicePath = import.meta.env.VITE_BACKEND_URL + 'api/Assignments/'
+const servicePath = import.meta.env.VITE_BACKEND_URL + 'api/GetAssignment/'
 
-export class AssignmentsService {
+export class GetAssignmentService {
     static async getAll() {
-        return await axios.get<GetAllAssignmentsOutput>(servicePath)
+        return await axios.get<GetAllAssignmentsOutput>(servicePath + 'GetAll')
     }
 
     static async get(id: string) {

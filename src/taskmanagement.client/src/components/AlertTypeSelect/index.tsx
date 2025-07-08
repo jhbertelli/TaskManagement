@@ -1,7 +1,7 @@
 import { Select, SelectProps } from '@mantine/core'
 import { AssignmentAlertType } from 'services/assignments/types'
 
-const values: AssignmentAlertType[] = ['Email', 'SMS']
+const options: AssignmentAlertType[] = ['Email', 'SMS']
 
 type AlertTypeSelectProps = Omit<SelectProps, 'value' | 'onChange'> & {
     value?: AssignmentAlertType
@@ -17,7 +17,7 @@ export const AlertTypeSelect = ({
     <Select
         label={label}
         placeholder={placeholder}
-        data={values}
+        data={options}
         {...props}
         onChange={(value) => onChange?.(value as AssignmentAlertType)}
     />

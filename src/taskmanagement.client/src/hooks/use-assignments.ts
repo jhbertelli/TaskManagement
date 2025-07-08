@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import { AssignmentsService } from 'services/assignments/assignments-service'
+import { GetAssignmentService } from 'services/assignments/get-assignment-service'
 
 export const useAssignments = () =>
     useQuery({
-        queryFn: AssignmentsService.getAll,
+        queryFn: GetAssignmentService.getAll,
         queryKey: ['get_all_assignments'],
     })

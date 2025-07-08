@@ -10,9 +10,10 @@ import { Calendar } from 'react-feather'
 import { AssignmentPrioritySelect } from 'components/AssignmentPrioritySelect'
 import { AssignmentSectionSelect } from 'components/AssignmentSectionSelect'
 import { AlertTypeSelect } from 'components/AlertTypeSelect'
+import { useCreateAssignment } from 'hooks/use-create-assignment'
 
 export const CreateAssignmentPage = () => {
-    // const createAssignment = useCreateAssignment()
+    const createAssignment = useCreateAssignment()
 
     useTitle('Criar tarefa')
 
@@ -26,7 +27,7 @@ export const CreateAssignmentPage = () => {
         resolver: zodResolver(createAssignmentSchema),
     })
 
-    const onSubmit: SubmitHandler<CreateAssignmentSchema> = async (data) => console.log(data)
+    const onSubmit: SubmitHandler<CreateAssignmentSchema> = async (data) => await createAssignment.mutateAsync(data)
 
     const isImportant = watch('section') === 'Important'
     const receiveAlert = watch('receiveAlert')
@@ -77,7 +78,6 @@ export const CreateAssignmentPage = () => {
                     placeholder="Insira a descrição da tarefa..."
                     {...register('description')}
                     error={errors.description?.message}
-                    withAsterisk
                 />
 
                 <AssignmentSectionSelect
@@ -87,9 +87,7 @@ export const CreateAssignmentPage = () => {
                     withAsterisk
                 />
 
-                {isImportant && (
-                    <Checkbox {...register('receiveAlert')} error={errors.section?.message} label="Alertar" />
-                )}
+                {isImportant && <Checkbox {...register('receiveAlert')} label="Alertar" />}
 
                 {receiveAlert && (
                     <AlertTypeSelect

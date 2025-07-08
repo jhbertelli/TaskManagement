@@ -1,7 +1,7 @@
 import { Select, SelectProps } from '@mantine/core'
 import { AssignmentSection } from 'services/assignments/types'
 
-const values: AssignmentSection[] = ['Domestic', 'Work', 'Leisure', 'Important']
+const options: AssignmentSection[] = ['Domestic', 'Work', 'Leisure', 'Important']
 
 type AssignmentSectionSelectProps = Omit<SelectProps, 'value' | 'onChange'> & {
     value?: AssignmentSection
@@ -17,7 +17,7 @@ export const AssignmentSectionSelect = ({
     <Select
         label={label}
         placeholder={placeholder}
-        data={values}
+        data={options}
         {...props}
         onChange={(value) => onChange?.(value as AssignmentSection)}
     />
