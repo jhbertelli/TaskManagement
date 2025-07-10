@@ -1,16 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Checkbox, Textarea, Title } from '@mantine/core'
-import { Button } from 'components/Button'
-import { Form } from 'components/Form'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useTitle } from 'react-use'
 import { DatePickerInput } from '@mantine/dates'
-import { CreateAssignmentSchema, createAssignmentSchema } from 'schemas/assignments/create-assignment'
-import { Calendar } from 'react-feather'
+import { AlertTypeSelect } from 'components/AlertTypeSelect'
+import { AssignedUserSelect } from 'components/AssignedUserSelect'
 import { AssignmentPrioritySelect } from 'components/AssignmentPrioritySelect'
 import { AssignmentSectionSelect } from 'components/AssignmentSectionSelect'
-import { AlertTypeSelect } from 'components/AlertTypeSelect'
+import { Button } from 'components/Button'
+import { Form } from 'components/Form'
 import { useCreateAssignment } from 'hooks/use-create-assignment'
+import { Calendar } from 'react-feather'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useTitle } from 'react-use'
+import { CreateAssignmentSchema, createAssignmentSchema } from 'schemas/assignments/create-assignment'
 
 export const CreateAssignmentPage = () => {
     const createAssignment = useCreateAssignment()
@@ -45,12 +46,10 @@ export const CreateAssignmentPage = () => {
                     withAsterisk
                 />
 
-                {/* TODO: Create search users input */}
-                <Form.Input
-                    label="Pessoa atribuída"
-                    placeholder="Este campo será substituido por um componente mais adequado"
+                <AssignedUserSelect
                     {...register('assignedUserId')}
-                    error={errors.assignedUserId}
+                    onChange={(value) => setValue('assignedUserId', value)}
+                    error={errors.assignedUserId?.message}
                     withAsterisk
                 />
 

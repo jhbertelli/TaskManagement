@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Contracts.Assignments;
+using TaskManagement.Domain;
 using TaskManagement.Domain.Assignments;
 using TaskManagement.Domain.Repositories;
 
@@ -18,10 +21,12 @@ public class GetAssignmentController : ControllerBase
     );
 
     private readonly IAssignmentRepository _assignmentRepository;
+    private readonly UserManager<User> _userManager;
 
-    public GetAssignmentController(IAssignmentRepository assignmentRepository)
+    public GetAssignmentController(IAssignmentRepository assignmentRepository, UserManager<User> userManager)
     {
         _assignmentRepository = assignmentRepository;
+        _userManager = userManager;
     }
 
     [HttpGet]
@@ -61,5 +66,22 @@ public class GetAssignmentController : ControllerBase
     public async Task<Assignment> GetAsync(Guid id)
     {
         return await Task.FromResult(_fakeAssignment);
+    }
+
+    [HttpGet]
+    [Route("GetAvailableAssignees")]
+    public async Task<GetAvailableAssigneesOutput[]> GetAvailableAssigneesAsync()
+    {
+        var assignees = await _userManager
+            .Users
+            .Select(user => new GetAvailableAssigneesOutput
+            {
+                UserEmail = user.Email!,
+                UserName = user.Name,
+                UserId = user.Id
+            })
+            .ToArrayAsync();
+
+        return assignees;
     }
 }
