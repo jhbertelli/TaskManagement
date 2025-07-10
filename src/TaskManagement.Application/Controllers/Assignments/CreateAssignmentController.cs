@@ -24,10 +24,10 @@ public class CreateAssignmentController : ControllerBase
     [Route("Create")]
     public async Task CreateAsync(CreateAssignmentInput input)
     {
-        var user = await _userManager
+        var assignedUser = await _userManager
             .FindByIdAsync(input.AssignedUserId.ToString());
 
-        user.CheckEntityNotFound(nameof(Domain.User));
+        assignedUser.CheckEntityNotFound(nameof(Domain.User));
 
         var assignment = new Assignment(
             input.AssignedUserId,
