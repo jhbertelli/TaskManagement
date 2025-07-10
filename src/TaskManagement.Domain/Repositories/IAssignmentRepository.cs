@@ -6,6 +6,10 @@ namespace TaskManagement.Domain.Repositories
     {
         public Task CreateAsync(Assignment assignment);
 
+        public IQueryable<Assignment> GetAll();
+
         public Task SaveChangesAsync();
+
+        public Task UpdateAsync(Assignment assignment);
     }
 }

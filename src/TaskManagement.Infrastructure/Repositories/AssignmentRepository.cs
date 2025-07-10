@@ -15,6 +15,14 @@ public class AssignmentRepository : IAssignmentRepository
     public async Task CreateAsync(Assignment assignment)
         => await _dbContext.Assignments.AddAsync(assignment);
 
+    public IQueryable<Assignment> GetAll()
+        => _dbContext.Assignments.AsQueryable();
+
     public async Task SaveChangesAsync()
         => await _dbContext.SaveChangesAsync();
+
+    public Task UpdateAsync(Assignment assignment)
+    {
+        throw new NotImplementedException();
+    }
 }

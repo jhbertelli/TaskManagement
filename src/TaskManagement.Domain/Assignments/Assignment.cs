@@ -2,7 +2,7 @@
 
 namespace TaskManagement.Domain.Assignments;
 
-public class Assignment
+public class Assignment : IEntity<Guid>
 {
     public Assignment(
         Guid assignedUserId,

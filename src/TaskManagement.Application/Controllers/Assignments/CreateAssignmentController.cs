@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Application.Contracts.Assignments;
+using TaskManagement.Domain;
 using TaskManagement.Domain.Assignments;
 using TaskManagement.Domain.Repositories;
 
@@ -10,16 +12,23 @@ namespace TaskManagement.Application.Controllers.Assignments;
 public class CreateAssignmentController : ControllerBase
 {
     private readonly IAssignmentRepository _assignmentRepository;
+    private readonly UserManager<User> _userManager;
 
-    public CreateAssignmentController(IAssignmentRepository assignmentRepository)
+    public CreateAssignmentController(IAssignmentRepository assignmentRepository, UserManager<User> userManager)
     {
         _assignmentRepository = assignmentRepository;
+        _userManager = userManager;
     }
 
     [HttpPost]
     [Route("Create")]
     public async Task CreateAsync(CreateAssignmentInput input)
     {
+        var user = await _userManager
+            .FindByIdAsync(input.AssignedUserId.ToString());
+
+        user.CheckEntityNotFound(nameof(Domain.User));
+
         var assignment = new Assignment(
             input.AssignedUserId,
             input.Deadline,
