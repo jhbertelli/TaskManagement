@@ -1,12 +1,23 @@
+const REGISTER = 'register'
+const LOGIN = 'login'
+const ASSIGNMENTS = 'assignments'
+const CREATE_ASSIGNMENT = ASSIGNMENTS + '/create'
+const ASSIGNMENT = ASSIGNMENTS + '/:id'
+
 export const paths = {
-    register: 'register',
-    login: 'login',
-    assignments: 'assignments',
-    createAssignment: 'assignments/create',
+    register: REGISTER,
+    login: LOGIN,
+    assignments: ASSIGNMENTS,
+    createAssignment: CREATE_ASSIGNMENT,
+    assignment: ASSIGNMENT,
 }
 
-const pathTo = Object.fromEntries(Object.entries(paths).map(([key, value]) => [key, '/' + value])) as {
-    [K in keyof typeof paths]: (typeof paths)[K]
+const pathTo = {
+    register: `/${REGISTER}`,
+    login: `/${LOGIN}`,
+    assignments: `/${ASSIGNMENTS}`,
+    createAssignment: `/${CREATE_ASSIGNMENT}`,
+    assignment: (id: string) => `/${ASSIGNMENTS}/${id}`,
 }
 
 export { pathTo }

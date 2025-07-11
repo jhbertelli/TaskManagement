@@ -44,16 +44,27 @@ public class GetAssignmentController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<Assignment> GetAsync(Guid id)
+    public async Task<GetAssignmentOutput> GetAsync(Guid id)
     {
         var assignment = await _assignmentRepository
             .GetAll()
             .Where(assignment => assignment.Id == id)
+            .Include(assignment => assignment.AssignedUser)
             .FirstOrDefaultAsync();
 
         assignment.CheckEntityNotFound(nameof(Assignment));
 
-        return assignment!;
+        return new()
+        {
+            AssignedUserEmail = assignment!.AssignedUser!.Email!,
+            AssignedUserName = assignment.AssignedUser.Name,
+            Deadline = assignment.Deadline,
+            Description = assignment.Description,
+            Id = assignment.Id,
+            Name = assignment.Name,
+            Priority = assignment.Priority,
+            Section = assignment.Section
+        };
     }
 
     [HttpGet]

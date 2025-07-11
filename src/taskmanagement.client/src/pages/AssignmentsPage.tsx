@@ -20,7 +20,7 @@ export const AssignmentsPage = () => {
             </div>
 
             <div className="mt-6 flex flex-col gap-2">
-                {assignments?.data.map((assignment) => (
+                {assignments?.map((assignment) => (
                     <AssignmentListItem {...assignment} key={assignment.id} />
                 ))}
             </div>

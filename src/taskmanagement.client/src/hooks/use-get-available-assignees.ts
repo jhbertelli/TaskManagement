@@ -3,6 +3,7 @@ import { GetAssignmentService } from 'services/assignments/get-assignment-servic
 
 export const useGetAvailableAssignees = () =>
     useQuery({
-        queryKey: [],
+        queryKey: ['get_available_assignees'],
         queryFn: GetAssignmentService.getAvailableAssignees,
+        select: (response) => response.data,
     })

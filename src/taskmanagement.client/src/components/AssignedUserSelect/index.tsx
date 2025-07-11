@@ -13,12 +13,9 @@ export const AssignedUserSelect = ({
     onChange,
     ...props
 }: AssignedUserSelectProps) => {
-    const { data } = useGetAvailableAssignees()
+    const { data: assignees = [] } = useGetAvailableAssignees()
 
-    // TODO: use initialData in hook above
-    const { data: assignees } = data ?? { data: [] }
-
-    const options: ComboboxData = assignees.map((assignee) => ({
+    const options: ComboboxData = assignees?.map((assignee) => ({
         label: `${assignee.userName} (${assignee.userEmail})`,
         value: assignee.userId,
     }))

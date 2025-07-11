@@ -1,8 +1,10 @@
-import { GetAllAssignmentOutput } from 'services/assignments/types'
-import { AssignmentPriorityBadge } from './AssignmentListItemPriority'
+import { pathTo } from 'constants/paths'
+import { Link } from 'react-router-dom'
+import { GetAllAssignmentsOutput } from 'services/assignments/types'
 import { formatAPIDate } from 'utils/dates'
+import { AssignmentPriorityBadge } from './AssignmentListItemPriority'
 
-type AssignmentListItemProps = GetAllAssignmentOutput
+type AssignmentListItemProps = GetAllAssignmentsOutput
 
 export const AssignmentListItem = ({
     name,
@@ -12,7 +14,7 @@ export const AssignmentListItem = ({
     deadline,
     id,
 }: AssignmentListItemProps) => (
-    <a href={id}>
+    <Link to={pathTo.assignment(id)}>
         <div className="border border-gray-400 rounded-md p-3">
             <b>{name}</b>
 
@@ -25,5 +27,5 @@ export const AssignmentListItem = ({
 
             <span>Data limite para conclusão: {formatAPIDate(deadline)}</span>
         </div>
-    </a>
+    </Link>
 )

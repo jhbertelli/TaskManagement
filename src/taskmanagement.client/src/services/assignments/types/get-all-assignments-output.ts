@@ -1,6 +1,6 @@
 import { AssignmentPriority } from './assignment-priority'
 
-export interface GetAllAssignmentOutput {
+export interface GetAllAssignmentsOutput {
     assignedUserName: string
     deadline: string
     description?: string

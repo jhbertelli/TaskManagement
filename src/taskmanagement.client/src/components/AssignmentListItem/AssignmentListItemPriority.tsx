@@ -1,9 +1,9 @@
 import { Badge, BadgeProps } from '@mantine/core'
-import { GetAllAssignmentOutput } from 'services/assignments/types'
+import { GetAllAssignmentsOutput } from 'services/assignments/types'
 
-type AssignmentListItemPriorityProps = Pick<GetAllAssignmentOutput, 'priority'>
+type AssignmentListItemPriorityProps = Pick<GetAllAssignmentsOutput, 'priority'>
 
-const badgeColor: Record<GetAllAssignmentOutput['priority'], BadgeProps['color']> = {
+const badgeColor: Record<GetAllAssignmentsOutput['priority'], BadgeProps['color']> = {
     Low: 'green',
     Medium: 'yellow',
     High: 'red',
