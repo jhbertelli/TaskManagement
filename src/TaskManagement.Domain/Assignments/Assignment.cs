@@ -60,4 +60,15 @@ public class Assignment : IEntity<Guid>
     public AssignmentSection Section { get; set; }
 
     public AssignmentStatus Status { get; set; }
+
+    public Assignment Complete(DateTime conclusionDate, string? conclusionNote)
+    {
+        ConclusionDate = Guard.Against.Default(conclusionDate);
+
+        ConclusionNote = conclusionNote == null
+            ? null
+            : Guard.Against.StringTooLong(conclusionNote, AssignmentConsts.ConclusionNoteMaxLength);
+
+        return this;
+    }
 }

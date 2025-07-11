@@ -4,5 +4,5 @@ public enum AssignmentStatus
 {
     Open,
     Canceled,
-    Concluded
+    Completed
 }

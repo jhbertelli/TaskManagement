@@ -20,9 +20,4 @@ public class AssignmentRepository : IAssignmentRepository
 
     public async Task SaveChangesAsync()
         => await _dbContext.SaveChangesAsync();
-
-    public Task UpdateAsync(Assignment assignment)
-    {
-        throw new NotImplementedException();
-    }
 }
