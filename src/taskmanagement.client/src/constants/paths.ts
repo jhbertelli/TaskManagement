@@ -3,6 +3,7 @@ const LOGIN = 'login'
 const ASSIGNMENTS = 'assignments'
 const CREATE_ASSIGNMENT = ASSIGNMENTS + '/create'
 const ASSIGNMENT = ASSIGNMENTS + '/:id'
+const COMPLETE_ASSIGNMENT = ASSIGNMENT + '/complete'
 
 export const paths = {
     register: REGISTER,
@@ -10,6 +11,7 @@ export const paths = {
     assignments: ASSIGNMENTS,
     createAssignment: CREATE_ASSIGNMENT,
     assignment: ASSIGNMENT,
+    completeAssignment: COMPLETE_ASSIGNMENT,
 }
 
 const pathTo = {
@@ -18,6 +20,7 @@ const pathTo = {
     assignments: `/${ASSIGNMENTS}`,
     createAssignment: `/${CREATE_ASSIGNMENT}`,
     assignment: (id: string) => `/${ASSIGNMENTS}/${id}`,
+    completeAssignment: (id: string) => `/${ASSIGNMENTS}/${id}/complete`,
 }
 
 export { pathTo }

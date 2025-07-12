@@ -11,7 +11,7 @@ import { useCreateAssignment } from 'hooks/use-create-assignment'
 import { Calendar } from 'react-feather'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTitle } from 'react-use'
-import { CreateAssignmentSchema, createAssignmentSchema } from 'schemas/assignments/create-assignment'
+import { CreateAssignmentSchema, createAssignmentSchema } from 'schemas/assignments'
 
 export const CreateAssignmentPage = () => {
     const createAssignment = useCreateAssignment()
