@@ -6,9 +6,7 @@ import { useGetAssignment } from 'hooks/use-get-assignment'
 import { useParams } from 'react-router-dom'
 import { useTitle } from 'react-use'
 
-type ViewAssignmentPageParams = Partial<{
-    id: string
-}>
+type ViewAssignmentPageParams = Partial<{ id: string }>
 
 export const ViewAssignmentPage = () => {
     const { id = '' } = useParams<ViewAssignmentPageParams>()

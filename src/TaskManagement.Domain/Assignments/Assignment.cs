@@ -69,6 +69,8 @@ public class Assignment : IEntity<Guid>
             ? null
             : Guard.Against.StringTooLong(conclusionNote, AssignmentConsts.ConclusionNoteMaxLength);
 
+        Status = AssignmentStatus.Completed;
+
         return this;
     }
 }
