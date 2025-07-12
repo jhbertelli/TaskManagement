@@ -1,4 +1,6 @@
 ﻿using Ardalis.GuardClauses;
+using System.Xml.Linq;
+using TaskManagement.Domain.Exceptions.Assignments;
 
 namespace TaskManagement.Domain.Assignments;
 
@@ -63,6 +65,9 @@ public class Assignment : IEntity<Guid>
 
     public Assignment Complete(DateTime conclusionDate, string? conclusionNote)
     {
+        if (Status.IsCanceled())
+            throw new CannotCompleteCanceledAssignmentException();
+
         ConclusionDate = Guard.Against.Default(conclusionDate);
 
         ConclusionNote = string.IsNullOrWhiteSpace(conclusionNote)
@@ -70,6 +75,23 @@ public class Assignment : IEntity<Guid>
             : Guard.Against.StringTooLong(conclusionNote, AssignmentConsts.ConclusionNoteMaxLength);
 
         Status = AssignmentStatus.Completed;
+
+        return this;
+    }
+
+    public Assignment Cancel(string cancellationReason)
+    {
+        if (Status.IsCompleted())
+            throw new CannotCancelCompletedAssignmentException();
+
+        CancellationReason = Guard
+            .Against
+            .StringTooLong(
+                Guard.Against.NullOrEmpty(cancellationReason),
+                AssignmentConsts.ConclusionNoteMaxLength
+            );
+
+        Status = AssignmentStatus.Canceled;
 
         return this;
     }

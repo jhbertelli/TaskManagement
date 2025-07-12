@@ -33,4 +33,21 @@ public class UpdateAssignmentController : ControllerBase
 
         await _assignmentRepository.SaveChangesAsync();
     }
+
+    [HttpPatch]
+    [Route("Cancel")]
+    public async Task CancelAsync(CancelAssignmentInput input)
+    {
+        var assignment = await _assignmentRepository
+            .GetAll()
+            .Where(assignment => assignment.Id == input.Id)
+            .FirstOrDefaultAsync();
+
+        assignment.CheckEntityNotFound(nameof(Assignment));
+
+        assignment!
+            .Cancel(input.CancellationReason);
+
+        await _assignmentRepository.SaveChangesAsync();
+    }
 }
