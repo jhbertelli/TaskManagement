@@ -30,7 +30,7 @@ public class Assignment : IEntity<Guid>
         AlertType = alertType == null
             ? null
             : Guard.Against.EnumOutOfRange((AssignmentAlertType)alertType);
-        Description = string.IsNullOrEmpty(description)
+        Description = string.IsNullOrWhiteSpace(description)
             ? null
             : Guard.Against.StringTooLong(description, AssignmentConsts.DescriptionMaxLength);
     }
@@ -65,7 +65,7 @@ public class Assignment : IEntity<Guid>
     {
         ConclusionDate = Guard.Against.Default(conclusionDate);
 
-        ConclusionNote = conclusionNote == null
+        ConclusionNote = string.IsNullOrWhiteSpace(conclusionNote)
             ? null
             : Guard.Against.StringTooLong(conclusionNote, AssignmentConsts.ConclusionNoteMaxLength);
 
