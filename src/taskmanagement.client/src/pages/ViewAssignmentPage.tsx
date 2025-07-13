@@ -39,7 +39,7 @@ export const ViewAssignmentPage = () => {
             </div>
 
             <div className="flex flex-col gap-4">
-                <Button variant="default" fullWidth>
+                <Button variant="default" path={pathTo.cancelAssignment(id)} fullWidth>
                     Cancelar tarefa
                 </Button>
 
