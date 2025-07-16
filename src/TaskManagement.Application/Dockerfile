@@ -8,22 +8,28 @@ EXPOSE 8080
 EXPOSE 8081
 
 ## This stage is used to build the service project
-#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS with-node
-#RUN apt-get update
-#RUN apt-get install curl
-#RUN curl -sL https://deb.nodesource.com/setup_20.x | bash
-#RUN apt-get -y install nodejs
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS with-node
+RUN apt-get update
+RUN apt-get install curl
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash
+RUN apt-get -y install nodejs
+RUN npm i -g pnpm
 
 # This stage is used to build the service project
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["TaskManagement.Application/TaskManagement.Application.csproj", "TaskManagement.Application/"]
-COPY ["taskmanagement.client/taskmanagement.client.esproj", "taskmanagement.client/"]
-RUN dotnet restore "./TaskManagement.Application/TaskManagement.Application.csproj"
+FROM with-node AS build
+ARG BUILD_CONFIGURATION=Debug
+WORKDIR /app
 COPY . .
-WORKDIR "/src/TaskManagement.Application"
+RUN dotnet restore "./src/TaskManagement.Application/TaskManagement.Application.csproj"
+RUN dotnet dev-certs https
+RUN dotnet dev-certs https --trust
+WORKDIR /app/src/TaskManagement.Application
 RUN dotnet build "./TaskManagement.Application.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Run backend for development purposes
+FROM build AS dev
+WORKDIR /app/build
+ENTRYPOINT ["dotnet", "TaskManagement.Application.dll"]
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
