@@ -1,8 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
+import { pathTo } from 'constants/paths'
+import { useNavigate } from 'react-router-dom'
 import { AuthService } from 'services/auth-service'
 
-export const useRegister = () =>
-    useMutation({
+export function useRegister() {
+    const navigate = useNavigate()
+
+    return useMutation({
         mutationFn: AuthService.register,
-        onSuccess: () => console.log('todo: redirect to home'),
+        onSuccess: () => navigate(pathTo.login),
     })
+}

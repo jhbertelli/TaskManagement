@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Contracts.Assignments;
 using TaskManagement.Domain.Assignments;
@@ -8,6 +9,7 @@ namespace TaskManagement.Application.Controllers.Assignments;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class UpdateAssignmentController : ControllerBase
 {
     private readonly IAssignmentRepository _assignmentRepository;

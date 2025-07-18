@@ -21,7 +21,7 @@ export const LoginPage = () => {
         resolver: zodResolver(loginSchema),
     })
 
-    const onSubmit: SubmitHandler<LoginSchema> = async (data) => console.log(await login.mutateAsync(data))
+    const onSubmit: SubmitHandler<LoginSchema> = async (data) => await login.mutateAsync(data)
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between">

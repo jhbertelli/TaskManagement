@@ -22,7 +22,7 @@ export const RegisterPage = () => {
         resolver: zodResolver(registerSchema),
     })
 
-    const onSubmit: SubmitHandler<RegisterSchema> = async (data) => console.log(await registerUser.mutateAsync(data))
+    const onSubmit: SubmitHandler<RegisterSchema> = async (data) => await registerUser.mutateAsync(data)
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between">

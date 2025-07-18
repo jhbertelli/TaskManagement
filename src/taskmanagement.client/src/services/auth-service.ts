@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { LoginInput, RegisterInput, LoginResponseOutput } from './types'
+import axios from 'services/axios'
+import { LoginInput, LoginResponseOutput, RegisterInput } from './types'
 
 const servicePath = import.meta.env.VITE_BACKEND_URL + 'api/Auth/'
 

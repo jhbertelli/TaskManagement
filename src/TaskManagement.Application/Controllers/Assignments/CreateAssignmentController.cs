@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Application.Contracts.Assignments;
 using TaskManagement.Domain;
@@ -9,6 +10,7 @@ namespace TaskManagement.Application.Controllers.Assignments;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class CreateAssignmentController : ControllerBase
 {
     private readonly IAssignmentRepository _assignmentRepository;

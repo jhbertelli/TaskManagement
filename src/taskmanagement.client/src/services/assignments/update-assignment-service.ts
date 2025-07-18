@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'services/axios'
 import { CancelAssignmentInput, CompleteAssignmentInput } from './types'
 
 const servicePath = import.meta.env.VITE_BACKEND_URL + 'api/UpdateAssignment/'
