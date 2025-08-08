@@ -20,24 +20,24 @@ FROM with-node AS build
 ARG BUILD_CONFIGURATION=Debug
 WORKDIR /app
 COPY . .
-RUN dotnet restore "./src/TaskManagement.Application/TaskManagement.Application.csproj"
+RUN dotnet restore "./src/TaskManagement.Host/TaskManagement.Host.csproj"
 RUN dotnet dev-certs https
 RUN dotnet dev-certs https --trust
-WORKDIR /app/src/TaskManagement.Application
-RUN dotnet build "./TaskManagement.Application.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR /app/src/TaskManagement.Host
+RUN dotnet build "./TaskManagement.Host.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Run backend for development purposes
 FROM build AS dev
 WORKDIR /app/build
-ENTRYPOINT ["dotnet", "TaskManagement.Application.dll"]
+ENTRYPOINT ["dotnet", "TaskManagement.Host.dll"]
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./TaskManagement.Application.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./TaskManagement.Host.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TaskManagement.Application.dll"]
+ENTRYPOINT ["dotnet", "TaskManagement.Host.dll"]

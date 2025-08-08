@@ -5,12 +5,15 @@ using TaskManagement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-    options
+builder
+    .Services
+    .AddControllers()
+    .AddApplicationPart(typeof(TaskManagement.Application.Controllers.AuthController).Assembly)
+    .AddJsonOptions(options => options
         .JsonSerializerOptions
         .Converters
         .Add(new JsonStringEnumConverter())
-);
+    );
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -26,9 +29,9 @@ const string corsAllowOriginsString = "_corsAllowOrigins";
 builder.Services.AddCors(options =>
     options.AddPolicy(corsAllowOriginsString,
         policy => policy
-            .WithOrigins(builder.Configuration["ClientUrl"]!)
-            .AllowAnyHeader()
-            .AllowAnyMethod()
+        .WithOrigins(builder.Configuration["ClientUrl"]!)
+        .AllowAnyHeader()
+        .AllowAnyMethod()
     )
 );
 
