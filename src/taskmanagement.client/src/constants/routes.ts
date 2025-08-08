@@ -1,13 +1,19 @@
 import { createBrowserRouter, redirect } from 'react-router-dom'
-import { authRoutes } from './auth-routes'
+import { ErrorElement } from '../components/ErrorBoundary'
 import { assignmentRoutes } from './assignments-routes'
+import { authRoutes } from './auth-routes'
 import { paths } from './paths'
 
 export const routes = createBrowserRouter([
     {
-        index: true,
-        loader: async () => redirect(paths.assignments),
+        ErrorBoundary: ErrorElement,
+        children: [
+            {
+                index: true,
+                loader: async () => redirect(paths.assignments),
+            },
+            ...authRoutes,
+            ...assignmentRoutes,
+        ],
     },
-    ...authRoutes,
-    ...assignmentRoutes,
 ])
