@@ -28,7 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TaskManagement.Application.Contracts\TaskManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\TaskManagement.Application\TaskManagement.Application.csproj" />
-    <ProjectReference Include="..\taskmanagement.client\taskmanagement.client.esproj">
+    <ProjectReference Include="..\taskmanagement.client\TaskManagement.Web.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\TaskManagement.Domain\TaskManagement.Domain.csproj" />

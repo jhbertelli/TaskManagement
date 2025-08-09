@@ -7,8 +7,6 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application.Contracts", "src\TaskManagement.Application.Contracts\TaskManagement.Application.Contracts.csproj", "{CC4447EA-0F4D-4014-A190-FDDD19FFD266}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "taskmanagement.client", "src\taskmanagement.client\taskmanagement.client.esproj", "{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain", "src\TaskManagement.Domain\TaskManagement.Domain.csproj", "{0E2F0F90-DCB0-4A98-8C12-679B7F9CBE99}"
@@ -18,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Host", "src\TaskManagement.Host\TaskManagement.Host.csproj", "{FDE69964-3058-67EF-AED4-7027DB84D2BC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application", "src\TaskManagement.Application\TaskManagement.Application.csproj", "{C7ACE4AA-B7AE-4359-B5D0-A41DDB6AC80B}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "TaskManagement.Web", "src\TaskManagement.Web\TaskManagement.Web.esproj", "{F72B5739-2C77-1623-7C93-354041C2F1DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,12 +33,6 @@ Global
 		{CC4447EA-0F4D-4014-A190-FDDD19FFD266}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC4447EA-0F4D-4014-A190-FDDD19FFD266}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC4447EA-0F4D-4014-A190-FDDD19FFD266}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{0E2F0F90-DCB0-4A98-8C12-679B7F9CBE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E2F0F90-DCB0-4A98-8C12-679B7F9CBE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E2F0F90-DCB0-4A98-8C12-679B7F9CBE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,17 +49,23 @@ Global
 		{C7ACE4AA-B7AE-4359-B5D0-A41DDB6AC80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7ACE4AA-B7AE-4359-B5D0-A41DDB6AC80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7ACE4AA-B7AE-4359-B5D0-A41DDB6AC80B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72B5739-2C77-1623-7C93-354041C2F1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72B5739-2C77-1623-7C93-354041C2F1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72B5739-2C77-1623-7C93-354041C2F1DC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F72B5739-2C77-1623-7C93-354041C2F1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72B5739-2C77-1623-7C93-354041C2F1DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72B5739-2C77-1623-7C93-354041C2F1DC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CC4447EA-0F4D-4014-A190-FDDD19FFD266} = {02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}
-		{5E75BE3E-E3C6-4E91-A842-B29FBC8FCFFF} = {02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}
 		{0E2F0F90-DCB0-4A98-8C12-679B7F9CBE99} = {02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}
 		{FBEAEEF4-4AB7-4F7E-B1C5-E2C5CE1F1AA5} = {02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}
 		{FDE69964-3058-67EF-AED4-7027DB84D2BC} = {02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}
 		{C7ACE4AA-B7AE-4359-B5D0-A41DDB6AC80B} = {02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}
+		{F72B5739-2C77-1623-7C93-354041C2F1DC} = {02B77BDB-D9D1-4BCF-8E49-32F8F1159FEB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08E97A2F-BC6B-4FA8-BCFA-679D68C3C297}
